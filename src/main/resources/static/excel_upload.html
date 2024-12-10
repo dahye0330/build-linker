@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Upload Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .upload-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .upload-container h1 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="file"] {
+            padding: 5px;
+        }
+
+        .upload-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745; /* 초록색 */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .upload-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<div class="upload-container">
+    <h1>Excel File Uploader</h1>
+    <div class="form-group">
+        <label for="excelFile">엑셀 파일 업로드:</label> <!-- 레이블을 한글로 변경 -->
+        <input type="file" id="excelFile" accept=".xls,.xlsx">
+    </div>
+    <div class="form-group">
+        <label for="buildCommand">빌드 명령어 입력:</label>
+        <input type="text" id="buildCommand" placeholder="Enter build command">
+    </div>
+    <button class="upload-button" onclick="uploadFile()">Upload</button>
+</div>
+
+<script>
+    function uploadFile() {
+        const fileInput = document.getElementById('excelFile');
+        const buildCommandInput = document.getElementById('buildCommand');
+
+        const file = fileInput.files[0];
+        const buildCommand = buildCommandInput.value;
+
+        if (!file) {
+            alert('엑셀 파일을 선택해주세요.');
+            return;
+        }
+
+        if (!buildCommand) {
+            alert('빌드 명령어를 입력해주세요.');
+            return;
+        }
+
+        // Simulate upload logic (you can replace this with actual server-side integration)
+        console.log('File:', file);
+        console.log('Build Command:', buildCommand);
+
+        alert('파일과 빌드 명령어가 성공적으로 제출되었습니다!');
+    }
+</script>
+</body>
+</html>
