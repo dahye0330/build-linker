@@ -102,11 +102,28 @@
             return;
         }
 
-        // Simulate upload logic (you can replace this with actual server-side integration)
-        console.log('File:', file);
-        console.log('Build Command:', buildCommand);
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('buildCommand', buildCommand);
 
-        alert('파일과 빌드 명령어가 성공적으로 제출되었습니다!');
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('파일 업로드 실패');
+                }
+            })
+            .then(data => {
+                alert('업로드 성공: ' + data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('업로드 중 오류가 발생했습니다.');
+            });
     }
 </script>
 </body>
